@@ -1,4 +1,4 @@
-package com.ledger.webapp;
+package com.ledger.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
