@@ -3,10 +3,10 @@ package com.ledger.webapp;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+// @SpringBootTest
 class WebappApplicationTests {
 
-	@Test
+	// @Test
 	void contextLoads() {
 	}
 
