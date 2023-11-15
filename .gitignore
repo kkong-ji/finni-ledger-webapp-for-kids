@@ -27,6 +27,20 @@ out/
 !**/src/test/**/out/
 application.properties
 
+# yml
+src/main/resources/application.yml
+application.yml
+#aws.yml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
