@@ -31,7 +31,7 @@ application.properties
 src/main/resources/application.yml
 application.yml
 #aws.yml
-
+r
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
