@@ -1,0 +1,31 @@
+# application port settings
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-webapp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ledger_db?serverTimezone=UTC
+    username: root
+    password: Kjh950330!
+  jpa:
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+  session:
+    store-type: jdbc
+
+# Query bind parameter print
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
