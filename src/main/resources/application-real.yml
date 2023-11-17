@@ -1,7 +1,6 @@
 spring:
   profile:
     group:
-      real: real. real-db
   jpa:
     show-sql: true
     properties:
