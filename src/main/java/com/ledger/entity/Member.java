@@ -2,11 +2,8 @@ package com.ledger.entity;
 
 import com.ledger.constant.Role;
 import lombok.*;
-<<<<<<< HEAD
-=======
 
 import javax.persistence.*;
->>>>>>> Feat/oauth2-login
 
 @Entity
 @Table(name="member")
@@ -22,19 +19,16 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false, length = 50)
     private String email;
 
     @Column
-<<<<<<< HEAD
-=======
     private String password;
 
     @Column
->>>>>>> Feat/oauth2-login
     private Integer age;
 
     @Enumerated(EnumType.STRING)
@@ -45,11 +39,7 @@ public class Member extends BaseEntity {
     private String profile;    // 회원 프로필 사진
 
     @Builder
-<<<<<<< HEAD
-    public Member(String nickname, String profile, String email, Role role) {
-=======
     public Member(String nickname, String email, String profile, Role role) {
->>>>>>> Feat/oauth2-login
         this.nickname = nickname;
         this.email = email;
         this.profile = profile;
@@ -63,12 +53,7 @@ public class Member extends BaseEntity {
     public Member update(String nickname, String profile) {
         this.nickname = nickname;
         this.profile = profile;
-<<<<<<< HEAD
-        this.email = email;
-        this.role = role;
-=======
 
->>>>>>> Feat/oauth2-login
         return this;
     }
 

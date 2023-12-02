@@ -1,16 +1,9 @@
 package com.ledger.config.auth;
 
 import com.ledger.config.auth.dto.OAuthAttributes;
-<<<<<<< HEAD
-import com.ledger.config.auth.dto.SessionMember;
-import com.ledger.entity.Member;
-import com.ledger.repository.MemberRepository;
-import jakarta.servlet.http.HttpSession;
-=======
 import com.ledger.config.auth.dto.SessionUser;
 import com.ledger.entity.Member;
 import com.ledger.repository.MemberRepository;
->>>>>>> Feat/oauth2-login
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -21,10 +14,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-=======
 import javax.servlet.http.HttpSession;
->>>>>>> Feat/oauth2-login
 import java.util.Collections;
 
 @RequiredArgsConstructor
@@ -47,18 +37,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         Member member = saveOrUpdate(attributes);
 
-<<<<<<< HEAD
-        httpSession.setAttribute("member", new SessionMember(member));
-
-        return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(member.getRoleKey())),
-                attributes.getAttributes(),
-                attributes.getNameAttributeKey());
-        }
-
-        private Member saveOrUpdate(OAuthAttributes attributes) {
-            Member member = memberRepository.findByEmail(attributes.getEmail())
-=======
         httpSession.setAttribute("user", new SessionUser(member));
 
         return new DefaultOAuth2User(
@@ -69,7 +47,6 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     private Member saveOrUpdate(OAuthAttributes attributes) {
         Member member = memberRepository.findByEmail(attributes.getEmail())
->>>>>>> Feat/oauth2-login
                 .map(entity -> entity.update(attributes.getNickname(), attributes.getProfile()))
                 .orElse(attributes.toEntity());
 

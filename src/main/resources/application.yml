@@ -3,17 +3,11 @@ server:
   port: 8080
 
 spring:
-<<<<<<< HEAD
-  profiles:
-    include:
-      - oauth
-=======
   main:
     allow-bean-definition-overriding:
       true
   profiles:
     include: oauth
->>>>>>> Feat/oauth2-login
   application:
     name: spring-webapp
   datasource:

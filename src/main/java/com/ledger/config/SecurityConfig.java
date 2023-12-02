@@ -1,4 +1,4 @@
-package com.ledger.config;
+package com.ledger.config.auth;
 
 import com.ledger.config.auth.CustomOAuth2UserService;
 import com.ledger.service.MemberService;
