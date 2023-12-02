@@ -1,10 +1,9 @@
 package com.ledger.config.auth;
 
 import com.ledger.config.auth.dto.OAuthAttributes;
-import com.ledger.config.auth.dto.SessionMember;
+import com.ledger.config.auth.dto.SessionUser;
 import com.ledger.entity.Member;
 import com.ledger.repository.MemberRepository;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -15,6 +14,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.Collections;
 
 @RequiredArgsConstructor
@@ -37,16 +37,16 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         Member member = saveOrUpdate(attributes);
 
-        httpSession.setAttribute("member", new SessionMember(member));
+        httpSession.setAttribute("user", new SessionUser(member));
 
         return new DefaultOAuth2User(
-                Collections.singleton(new SimpleGrantedAuthority(member.getRoleKey())),
+                Collections.singleton(new SimpleGrantedAuthority(member.getRoleValue())),
                 attributes.getAttributes(),
                 attributes.getNameAttributeKey());
-        }
+    }
 
-        private Member saveOrUpdate(OAuthAttributes attributes) {
-            Member member = memberRepository.findByEmail(attributes.getEmail())
+    private Member saveOrUpdate(OAuthAttributes attributes) {
+        Member member = memberRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getNickname(), attributes.getProfile()))
                 .orElse(attributes.toEntity());
 

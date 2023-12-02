@@ -1,14 +1,12 @@
 package com.ledger.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,8 +17,8 @@ import java.time.format.DateTimeFormatter;
 public abstract class BaseTimeEntity {
 
     @CreatedDate                                                // 엔티티가 생성되어 저장될 때 시간을 자동으로 저장
-    @Column(updatable = false)
-    private LocalDateTime regTime;
+    @Column(name = "created_date", updatable = false)
+    private String createdDate;
 
     @LastModifiedDate                                           // 엔티티의 값을 변경할 때 시간을 자동으로 저장
     private LocalDateTime updateTime;
@@ -29,7 +27,14 @@ public abstract class BaseTimeEntity {
     @LastModifiedDate
     private String modifiedDate;
 
-    /* 해당 엔티티를 업데이트 하기 이전에 실행*/
+    /* 해당 엔티티를 저장하기 이전에 실행 */
+    @PrePersist
+    public void onPrePersist() {
+        this.createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.modifiedDate = this.createdDate;
+    }
+
+    /* 해당 엔티티를 업데이트 하기 이전에 실행 */
     @PreUpdate
     public void onPreUpdate(){
         this.modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
