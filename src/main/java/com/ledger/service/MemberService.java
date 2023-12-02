@@ -2,9 +2,17 @@ package com.ledger.service;
 
 import com.ledger.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
-public class MemberService {
+@Transactional
+@RequiredArgsConstructor
+public class MemberService{
+
+    private final MemberRepository memberRepository;
+
+
 }

@@ -3,9 +3,17 @@ server:
   port: 8080
 
 spring:
+<<<<<<< HEAD
   profiles:
     include:
       - oauth
+=======
+  main:
+    allow-bean-definition-overriding:
+      true
+  profiles:
+    include: oauth
+>>>>>>> Feat/oauth2-login
   application:
     name: spring-webapp
   datasource:
@@ -14,6 +22,7 @@ spring:
     username: root
     password: Kjh950330!
   jpa:
+    defer-datasource-initialization: true
     show-sql: true
     hibernate:
       format_sql: true
@@ -22,6 +31,8 @@ spring:
       hibernate:
         format_sql: true
   session:
+    jdbc:
+      initialize-schema: always
     store-type: jdbc
 
 # Query bind parameter print
