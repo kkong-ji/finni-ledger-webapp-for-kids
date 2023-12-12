@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+</head>
+<body>
+<div class="container">
+    <h1>회원 정보 확인 및 수정</h1>
+    <form role="form" action="/members/mypage" method="post">
+        <div class="form-group">
+            <label for="email">등록 이메일</label>
+            <input type="text" id="email" name="email" value="{{memberForm.email}}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">닉네임</label>
+            <input type="text" id="name" name="nickName" class="form-control" value="{{memberForm.nickName}}">
+        </div>
+        <div class="form-group">
+            <label for="age">나이</label>
+            <input type="number" id="age" name="age" class="form-control" min="4" max="120" placeholder="나이를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="profile">프로필</label>
+            <select id="profile" name="profile">
+                {{#profiles}}
+                    <option value="{{name}}">{{name}}</option>
+                {{/profiles}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button><br>
+        <a href="/members/mypage/delete" class="btn btn-secondary active" role="button" onclick="return confirmNavigation()">회원 탈퇴</a>
+    </form>
+</div>
+</body>
+<script>
+    function confirmNavigation() {
+        var confirmAction = confirm("정말로 탈퇴하시겠습니까?");
+        if (confirmAction) {
+            // AJAX 요청
+            fetch('/members/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                    .then(response => {
+                        if(response.ok) {
+                            alert("회원 탈퇴 처리가 완료되었습니다.");
+                            window.location.href = '/'; // 홈페이지로 리다이렉트
+                        } else {
+                            alert("오류가 발생했습니다.");
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+        }
+        return false; // 기본 이벤트 방지
+    }
+</script>
+
+
+</html>
