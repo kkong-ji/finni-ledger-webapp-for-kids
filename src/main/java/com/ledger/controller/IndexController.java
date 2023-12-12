@@ -19,7 +19,10 @@ public class IndexController {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getNickname());
+            model.addAttribute("userEmail", user.getEmail());
+            httpSession.setAttribute("userEmail", user.getEmail());
         }
         return "index";
     }
+
 }
