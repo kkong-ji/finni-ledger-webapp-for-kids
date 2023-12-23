@@ -18,3 +18,18 @@ notifications:
   email:
     recipients:
       - wisejohn950330@gmail.com
+
+before_deploy:
+  - zip -r finni-ledger-webapp-for-kids-back-end *
+  - mkdir - p deploy
+  - mv finni-ledger-webapp-for-kids-back-end.zip deploy/finni-ledger-webapp-for-kids-back-end.zip
+
+deploy:
+  - provider: s3
+    access_key_id: AKIAXVPQVHGQJIZUJFFK        # Travis repo settings
+    secret_access_key: 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  # Travis repo settings
+    bucket: finni-ledger-webapp-for-kids-build # s3 버킷
+    skip_cleanup : true
+    acl: private # zip 파일 접근을 private으로
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
