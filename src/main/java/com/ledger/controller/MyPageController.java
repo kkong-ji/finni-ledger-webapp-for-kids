@@ -73,7 +73,7 @@ public class MyPageController {
             Member member = memberService.findByEmail(user.getEmail());
             Long memberId = member.getId();
 
-            memberService.delteMember(memberId);
+            memberService.deleteMember(memberId);
             System.out.println(member.getNickname() + " 탈퇴 처리 완료. memberId = " + memberId);
 
             return ResponseEntity.ok().build(); // 성공 응답

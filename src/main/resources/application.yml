@@ -28,6 +28,14 @@ spring:
     jdbc:
       initialize-schema: always
     store-type: jdbc
+  devtools:
+    livereload:
+      enabled: true
+  mustache:
+    cache: true
+    prefix: file:src/main/resources/templates/
+  # 배포할때는 liveReload 관련 설정 모두 해제하기
+
 
 # Query bind parameter print
 logging:

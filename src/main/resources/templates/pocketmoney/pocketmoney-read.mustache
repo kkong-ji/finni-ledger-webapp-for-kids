@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html: charset=UTF-8" />
+</head>
+<body>
+
+<div class="col-md-12">
+    <h1>용돈 정보 등록</h1>
+    <div class="col-md-4">
+        <form role="form" action="/PocketMoney" method="get">
+            <div class="form-group">
+                <label for="moneyCycle">용돈을 언제마다 받아요?</label>
+                <input type="text" id="moneyCycle" name="moneyCycle" value="{{userPocketMoneyCycle}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="moneyAmount">용돈을 얼마씩 받아요?</label>
+                <input type="text" id="moneyAmount" name="moneyAmount" readonly>
+            </div>
+            <div class="form-group">
+                <label for="moneyCategory">용돈을 주로 어디에 사용해요?</label>
+                <input type="text" id="moneyCategory" name="moneyCategory" readonly>
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="submit" id="sendBtn" name="sendBtn" onclick="sendData()" class="btn btn-primary">수정</button>
+    </div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function sendData(){
+        var data = {
+                moneyCycle: $('#moneyCycle').val(),
+                moneyAmount: $('#moneyAmount').val(),
+                moneyCategory: $('#moneyCategory').val()
+            };
+            $.ajax({
+                url: "/newPocketMoney",
+                type: "post",
+                crossDomain: true,
+                headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                success: function(data){
+                    alert("용돈정보가 저장되었습니다!");
+                    window.location.href = '/';
+                },
+                error:function(request, status, error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        }
+</script>
+
+</html>

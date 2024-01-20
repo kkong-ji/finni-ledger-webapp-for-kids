@@ -2,11 +2,10 @@ package com.ledger.entity;
 
 import com.ledger.constant.Role;
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="member")
+@Table(name = "member")
 @Getter
 @Setter
 @ToString
@@ -38,6 +37,10 @@ public class Member extends BaseEntity {
     @Column
     private String profile;    // 회원 프로필 사진
 
+    @OneToOne
+    @JoinColumn(name = "pocketMoney_id")
+    private PocketMoney pocketMoney;
+
     @Builder
     public Member(String nickname, String email, String profile, Role role) {
         this.nickname = nickname;
@@ -45,7 +48,6 @@ public class Member extends BaseEntity {
         this.profile = profile;
         this.role = role;
     }
-
 
     /**
      * 회원 수정 메소드
@@ -67,5 +69,4 @@ public class Member extends BaseEntity {
     public String getRoleValue() {
         return this.role.getKey();
     }
-
 }

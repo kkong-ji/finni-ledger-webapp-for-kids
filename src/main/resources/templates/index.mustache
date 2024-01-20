@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<h1>spring boot Oauth login test</h1>
+<h1>FINNI DEMO</h1>
 <div class="col-md-12">
     <!-- 로그인 기능 영역 -->
     <div class="row">
@@ -26,6 +26,42 @@
         </div>
         <hr>
     </div>
+    <br>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="#">Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                {{^userPocketMoney}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/newPocketMoney">new 용돈노트</a>
+                </li>
+                {{/userPocketMoney}}
+                {{^userPocketMoney}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/PocketMoney">용돈노트</a>
+                </li>
+                {{/userPocketMoney}}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">저금통</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">경제교실</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/PocketMoney">mypage</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+    </span>
+        </div>
+    </nav>
     <br>
 </div>
 

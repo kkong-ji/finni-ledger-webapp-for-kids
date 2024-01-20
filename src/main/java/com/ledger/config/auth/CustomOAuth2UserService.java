@@ -3,6 +3,7 @@ package com.ledger.config.auth;
 import com.ledger.config.auth.dto.OAuthAttributes;
 import com.ledger.config.auth.dto.SessionUser;
 import com.ledger.entity.Member;
+import com.ledger.entity.PocketMoney;
 import com.ledger.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

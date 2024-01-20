@@ -1,0 +1,72 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html: charset=UTF-8" />
+</head>
+<body>
+
+<div class="col-md-12">
+    <h1>용돈 정보 등록</h1>
+    <div class="col-md-4">
+        <form role="form" action="/newPocketMoney" method="post">
+            <div class="form-group">
+                <label>용돈을 언제마다 받아요?</label>
+                <input type="radio" id="moneyCycle" name="moneyCycle" value="everyday" /> 매일
+                <input type="radio" id="moneyCycle" name="moneyCycle" value="once a week" /> 일주일에 한번
+                <input type="radio" id="moneyCycle" name="moneyCycle" value="once in two weeks" /> 2주에 한번
+                <input type="radio" id="moneyCycle" name="moneyCycle" value="once a month" /> 한달에 한 번
+                <input type="radio" id="moneyCycle" name="moneyCycle" value="custom" /> 직접입력
+            </div>
+            <div class="form-group">
+                <label>용돈을 얼마씩 받아요?</label>
+                <input type="radio" id="moneyAmount" name="moneyAmount" value="5" /> 5만원
+                <input type="radio" id="moneyAmount" name="moneyAmount" value="1" /> 1만원
+                <input type="radio" id="moneyAmount" name="moneyAmount" value="2" /> 2만원
+                <input type="radio" id="moneyAmount" name="moneyAmount" value="3" /> 3만원
+                <input type="radio" id="moneyAmount" name="moneyAmount" value="custom" /> 직접입력
+            </div>
+            <div class="form-group">
+                <label>용돈을 주로 어디에 사용해요?</label>
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="food" /> 식사
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="movie" /> 영화
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="game" /> 게임
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="toy" /> 장난감
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="clothes" /> 옷
+                <input type="radio" id="moneyCategory" name="moneyCategory" value="custom" /> 직접입력
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="submit" id="sendBtn" name="sendBtn" onclick="sendData()" class="btn btn-primary">저장</button>
+    </div>
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function sendData(){
+        var data = {
+                moneyCycle: $('input[name="moneyCycle"]:checked').val(),
+                moneyAmount: $('input[name="moneyAmount"]:checked').val(),
+                moneyCategory: $('input[name="moneyCategory"]:checked').val()
+            };
+            $.ajax({
+                url: "/newPocketMoney",
+                type: "post",
+                crossDomain: true,
+                headers: {  'Access-Control-Allow-Origin': 'http://The web site allowed to access' },
+                dataType: "json",
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+                success: function(data){
+                    alert("용돈정보가 저장되었습니다!");
+                    window.location.href = '/';
+                },
+                error:function(request, status, error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            });
+        }
+</script>
+
+</html>

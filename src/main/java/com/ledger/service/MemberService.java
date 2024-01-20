@@ -14,7 +14,6 @@ public class MemberService{
 
     private final MemberRepository memberRepository;
 
-
     public Member findByEmail(String userEmail) {
         return memberRepository.findByEmail(userEmail).orElse(null);
     }
@@ -35,7 +34,7 @@ public class MemberService{
     * 회원 탈퇴
     * */
     @Transactional
-    public void delteMember(Long memberId) {
+    public void deleteMember(Long memberId) {
         Member memberById = findMemberById(memberId);
         memberRepository.delete(memberById);
     }
